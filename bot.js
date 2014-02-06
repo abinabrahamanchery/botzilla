@@ -1,3 +1,5 @@
+// jsx is just trolling
+
 "use strict";
 
 var config = require('./config').config;
@@ -22,7 +24,6 @@ bot.addListener('message', function (from, to, text, message) {
                     if (tokens[2]) {
                         var nick = tokens[2];
                         var userlist = require('./userlist');
-                        console.log(userlist)
                         if (userlist[nick]) {
                             bot.say(channel, nick + ' is ' + userlist[nick].name + ' and ' + userlist[nick].tooltype + ' says "' + userlist[nick].message + '"');
                         } else {
