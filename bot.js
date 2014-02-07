@@ -16,7 +16,7 @@ bot.addListener('join', function (channel, who) {
 
 bot.addListener('message', function (from, to, text, message) {
     var channel = config.channels[0];
-    var tokens = text.split(' ');
+    var tokens = text.toLowerCase().split(' ');
     if (tokens[0] && tokens[0] == '!bot') {
         if (tokens[1]) {
             var command = tokens[1];
