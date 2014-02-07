@@ -48,13 +48,35 @@ bot.addListener('message', function (from, to, text, message) {
                 }
 
                 case 'help': {
+                    var response;
+
                     if (!tokens[2]) { // No topic mentioned for help, so show general help response
-                        var response = "Botzilla is the official resident troll at Mozilla Kerala\n\n";
+                        response = "---------------------------------------------------------------------\n";
+                        response += "Botzilla is the official resident troll at Mozilla Kerala\n\n";
                         response += "You can run botzilla commands by typing !bot command\n";
-                        response += "The following are the available botzilla commands\n \n";
+                        response += "For more info on a particular command, type !bot help <command>\n";
+                        response += "Following are the available botzilla commands\n \n";
                         response += "     WHOIS    Get information about a Mozilla Kerala member.\n";
-                        bot.say(channel, response);
+                        response += "---------------------------------------------------------------------";
+
+                    } else {
+                        // topic for help is specified
+
+                        switch (tokens[2]) {
+                            case 'whois': {
+                                response = "---------------------------------------------------------------------\n";
+                                response += "WHOIS command will provide more info on a nickname\n \n";
+                                response += "usage: !bot whois <nickname>\n";
+                                response += "More info on nicknames are available only if the nickname is added to the WHOIS database\n";
+                                response += "If you are a member of Mozilla Kerala or a frequent visitor here and would like\n";
+                                response += "to add your name in the WHOIS index, send an email to hello@mozillakerala.org\n";
+                                response += "---------------------------------------------------------------------";
+                                break;
+                            }
+                        }
                     }
+
+                    bot.say(channel, response);
                     break;
                 }
 
