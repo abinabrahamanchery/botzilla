@@ -16,5 +16,15 @@ module.exports = {
         name: 'bmx',
         message: "david walsh ka dosth",
         tooltype: 'he'
+    },
+    'Kumaresan_c_s': {
+        name: 'Kumaresan C S',
+        message: "Hai all welcome to MozillaKerala",
+        tooltype: 'he'
+    },
+    'kcs': { // alternate nickname for Kumaresan
+        name: 'Kumaresan C S',
+        message: "Hai all welcome to MozillaKerala",
+        tooltype: 'he'
     }
 };
