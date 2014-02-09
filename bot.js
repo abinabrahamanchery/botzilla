@@ -43,6 +43,22 @@ bot.addListener('message', function (from, to, text, message) {
                     }
                 }
 
+                case 'calc': {
+                    tokens.shift(); // lets remove the first to elements from the array, so that we are...
+                    tokens.shift(); // ...left just with the operands and operators
+                    var expression = tokens.join(' ').replace(/[x]/g, '*').replace(/[a-zA-Z]/g, ''); // sanitize
+
+                    try {
+                        var result = eval(expression);
+                        expression.replace(/[*]/g, 'x'); // lets replace * with x before displaying
+                        bot.say(channel, expression + ' = ' + result);
+                    } catch (e) {
+                        bot.say(channel, 'ERROR: Invalid mathematical expression.');
+                    }
+
+                    break;
+                }
+
                 case 'help': {
                     var response;
 
@@ -53,6 +69,7 @@ bot.addListener('message', function (from, to, text, message) {
                         response += "For more info on a particular command, type !bot help <command>\n";
                         response += "Following are the available botzilla commands\n \n";
                         response += "     WHOIS    Get information about a Mozilla Kerala member.\n";
+                        response += "     CALC     Do simple arithmetic.\n";
                         response += "---------------------------------------------------------------------";
 
                     } else {
@@ -66,6 +83,15 @@ bot.addListener('message', function (from, to, text, message) {
                                 response += "More info on nicknames are available only if the nickname is added to the WHOIS database\n";
                                 response += "If you are a member of Mozilla Kerala or a frequent visitor here and would like\n";
                                 response += "to add your name in the WHOIS index, send an email to hello@mozillakerala.org\n";
+                                response += "---------------------------------------------------------------------";
+                                break;
+                            }
+
+                            case 'calc': {
+                                response = "---------------------------------------------------------------------\n";
+                                response += "CALC performs simple arithmetic operations\n \n";
+                                response += "usage: !bot calc <expression>\n";
+                                response += "e.g., !bot calc (4*5) - 3 \n";
                                 response += "---------------------------------------------------------------------";
                                 break;
                             }
