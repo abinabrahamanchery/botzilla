@@ -10,10 +10,6 @@ var bot = new irc.Client(config.server, config.botName, {
     realName: config.realName
 });
 
-bot.addListener('join', function (channel, who) {
-    bot.say(channel, who + ', welcome to Mozilla Kerala!');
-});
-
 bot.addListener('message', function (from, to, text, message) {
     var channel = config.channels[0];
     var tokens = text.toLowerCase().split(' ');
